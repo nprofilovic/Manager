@@ -1,12 +1,38 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './src/reducers';
+import firebase from 'firebase';
+import Home from './src/components/Home';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+const store = createStore(reducers);
+
+class App extends React.Component{
+
+  componentWillMount() {
+    const firebaseConfig = {
+      apiKey: 'AIzaSyDqtQawSfGwSN1sJ5xEb9O-5FgtBCnGzJw',
+      authDomain: 'auth-1c9b9.firebaseapp.com',
+      databaseURL: 'https://auth-1c9b9.firebaseio.com',
+      projectId: 'auth-1c9b9',
+      storageBucket: '',
+      messagingSenderId: '283135002309',
+      appId: '1:283135002309:web:00194e29927fc7ce' 
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  }
+
+
+  render(){
+    return(
+      <Provider store={store}>
+          <Home />
+      </Provider>
+      
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -17,3 +43,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
