@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import reducers from './src/reducers';
 import firebase from 'firebase';
 import Home from './src/components/Home';
 
-const store = createStore(reducers);
+
 
 class App extends React.Component{
 
@@ -26,6 +27,8 @@ class App extends React.Component{
 
 
   render(){
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return(
       <Provider store={store}>
           <Home />
