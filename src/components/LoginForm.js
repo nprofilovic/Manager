@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
 import Card from './common/Card';
 import CardSection from './common/CardSection';
 import Input from './common/Input';
 import Button from './common/Button';
 import { emailChanged, passwordChanged, loginUser } from '../actions'; 
+
 
 
 export class LoginForm extends Component {
@@ -22,12 +22,13 @@ export class LoginForm extends Component {
     }
 
     onButtonPress(){
-        const {email, passowrd} = this.props;
+        const {email, passoword} = this.props;
         
-        this.props.loginUser({email, passowrd});
+        this.props.loginUser({email, passoword});
     }
 
     render() {
+        console.log(this.props.loginUser)
         return (
             <Card>
                 <CardSection>
